@@ -1,4 +1,4 @@
-V=0.1
+V=0.01
 import requests, time, pyautogui, datetime, io, inspect, os
 
 def sendMsg(content, image=""):
