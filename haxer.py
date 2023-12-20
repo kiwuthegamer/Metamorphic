@@ -1,3 +1,4 @@
+V=0.1
 import requests, time, pyautogui, datetime, io, inspect, os
 
 def sendMsg(content, image=""):
@@ -21,7 +22,11 @@ while True:
 
   # Self-Updater
   r = requests.get("https://raw.githubusercontent.com/kiwuthegamer/Metamorphic/main/haxer.py")
-  if r.text != inspect.getsource(inspect.getmodule(inspect.currentframe())): # Check if an update is needed
+  script = inspect.getsource(inspect.getmodule(inspect.currentframe()))
+  scriptVersion = script.splitlines()[0].split("=")[1]
+  rScript = r.text
+  rScriptVersion = r.text.splitlines()[0].split("=")[1]
+  if rScriptVersion != scriptVersion: # Check if an update is needed
     sendMsg("Found Script Update!")
     sendMsg("Updating Script")
     
